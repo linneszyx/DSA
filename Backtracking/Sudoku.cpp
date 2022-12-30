@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/**
+ * It checks if the number is safe to be placed at the given position
+ * 
+ * @param mat The sudoku board
+ * @param i row index
+ * @param j column
+ * @param index The number we are trying to place in the cell.
+ * 
+ * @return a boolean value.
+ */
 bool isSafe(int mat[][9], int i, int j, int index)
 {
 
@@ -30,6 +40,19 @@ bool isSafe(int mat[][9], int i, int j, int index)
     return true;
 }
 
+/**
+ * If the current cell is empty, try each possible number in the current cell and recursively try to
+ * fill in the rest of the board. If the recursive call returns true, we found a solution. If it
+ * returns false, we should try the next number in the current cell. If we have tried all numbers in
+ * the current cell and none of them worked out, return false
+ * 
+ * @param mat The sudoku board
+ * @param i row index
+ * @param j column number
+ * @param n The size of the sudoku board.
+ * 
+ * @return a boolean value.
+ */
 bool solveSudoku(int mat[][9], int i, int j, int n)
 {
     // base case
