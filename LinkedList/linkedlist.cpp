@@ -17,6 +17,7 @@ int main()
     l.pop_front();
     l.pop_back();
     l.remove(2);
+    l.reverse();
     Node *head = l.begin();
     while (head != NULL)
     {

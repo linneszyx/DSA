@@ -159,7 +159,22 @@ public:
             delete temp;
         }
     }
-    
+    void reverse()
+    {
+        Node *current = head;
+        Node *previous = NULL;
+        Node *N;
+        while(current!=NULL){
+            //save the next node
+            N = current->next;
+            //make the current node point to previous n
+            current->next = previous;
+            //update previous and current tame them 1 step forward
+            previous = current;
+            current = N;
+        }
+        head = previous;
+    }
     ~List()
     {
         if (head != NULL)
