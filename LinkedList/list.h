@@ -159,6 +159,7 @@ public:
             delete temp;
         }
     }
+    
     ~List()
     {
         if (head != NULL)
