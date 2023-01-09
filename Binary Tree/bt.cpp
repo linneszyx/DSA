@@ -105,6 +105,23 @@ int diameter(Node *root){
     int D3 = diameter(root->right);
     return max(D1,max(D2,D3));
 }
+void leafpaths(Node *root,vector<int> &path){
+    if(root==NULL) return;
+    if(root->left==NULL and root->right==NULL){
+      for(int node : path){
+        cout<<node<<"-->";
+      }  
+      cout<<root->data<<"-->";
+      cout<<endl;
+      return;
+    }
+    //rec case
+    path.push_back(root->data);
+    leafpaths(root->left,path);
+    leafpaths(root->right,path);
+    path.pop_back();
+    return;
+}
 class HIGHDIA{
     public:
     int h,d;
@@ -154,21 +171,23 @@ int main()
 {
     Node *root = buildTree();
     // levelOrderPrint(root);
-    cout<<"Diameter "<<diameter(root)<<"\n";
-    cout<<"Optimesed Diameter "<<optDia(root).d<<endl;
-    cout<<"Printing InOrder Traversal\n";
-    printInorder(root);
-    cout<<"Printing PreOrder Traversal\n";
-    cout << "\n";
-    printPreorder(root);
-    cout << "\n";
-    cout<<"Printing PostOrder Traversal\n";
-    printPostorder(root);
-    cout << "\n";
-    cout<<"Printing Level Order Traversal\n";
-    levelOrderPrint(root);
-    cout << "\n";
+    // cout<<"Diameter "<<diameter(root)<<"\n";
+    // cout<<"Optimesed Diameter "<<optDia(root).d<<endl;
+    // cout<<"Printing InOrder Traversal\n";
+    // printInorder(root);
+    // cout<<"Printing PreOrder Traversal\n";
+    // cout << "\n";
+    // printPreorder(root);
+    // cout << "\n";
+    // cout<<"Printing PostOrder Traversal\n";
+    // printPostorder(root);
+    // cout << "\n";
+    // cout<<"Printing Level Order Traversal\n";
+    // levelOrderPrint(root);
+    // cout << "\n";
     // Node *root1 = levelOrderBuild();
     // levelOrderPrint(root);
+    vector<int> path;
+    leafpaths(root,path);
     return 0;
 }
