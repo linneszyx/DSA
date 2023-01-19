@@ -10,6 +10,33 @@ int knapSack_recu(int wts[],int prices[],int N,int W){
     exc = knapSack_recu(wts,prices,N-1,W);
     return max(inc,exc);
 }
+/**
+ * For each item, we have two choices: either include it in the knapsack or exclude it from the
+ * knapsack. 
+ * 
+ * We take the maximum of these two choices. 
+ * 
+ * The base case is when we have no items left or the knapsack's capacity becomes 0. 
+ * 
+ * In that case, the maximum value we can get is 0. 
+ * 
+ * The recurrence relation is: 
+ * 
+ * dp[n][w] = max(prices[n-1] + dp[n-1][w-wt[n-1]], dp[n-1][w])
+ * 
+ * The first term in the max function is the case when we include the current item in the knapsack. 
+ * 
+ * The second term is when we exclude the current item from the knapsack. 
+ * 
+ * The time complexity of the above solution is O(N*W) and the space complexity is O
+ * 
+ * @param wt array of weights of items
+ * @param prices an array of prices of items
+ * @param N Number of items
+ * @param W Total weight of the knapsack
+ * 
+ * @return The maximum value that can be obtained by picking items from the given set of items.
+ */
 int knapSack_DP(int wt[],int prices[],int N,int W){
     vector<vector<int>> dp(N+1,vector<int>(W+1,0));
     for(int n=1;n<=N;n++){
