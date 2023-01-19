@@ -1,6 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 // top-down DP approach
+/**
+ * We are trying to find the maximum profit that can be earned by selling wines from left to right. 
+ * 
+ * The function is called with the following parameters: 
+ * 
+ * - dp: A 2D array that stores the results of subproblems. 
+ * - prices: An array that stores the price of wines. 
+ * - L: Starting index of the segment of wines that must be sold. 
+ * - R: Ending index of the segment of wines that must be sold. 
+ * - y: The current year. 
+ * 
+ * The function returns the maximum profit that can be earned by selling wines from index L to index R.
+ * 
+ * 
+ * The function is called with L = 0, R = n - 1, and y = 1. 
+ * 
+ * The base case is when L > R. In this case, no wines are left to sell, so the profit is 0. 
+ * 
+ * If the result of the subproblem is already stored
+ * 
+ * @param dp The dp array
+ * @param prices array of prices of wines
+ * @param L Left index of the array
+ * @param R The rightmost index of the array.
+ * @param y year
+ * 
+ * @return The maximum profit that can be earned by selling the wines.
+ */
 int wines(int dp[][10], int prices[], int L, int R, int y)
 {
     if (L > R)
@@ -11,6 +39,14 @@ int wines(int dp[][10], int prices[], int L, int R, int y)
     int pick_right = y * prices[R] + wines(dp, prices, L, R - 1, y + 1);
     return dp[L][R] = max(pick_left, pick_right);
 }
+/**
+ * We start from the bottom of the matrix and fill the matrix row by row.
+ * 
+ * @param prices an array of prices of wines
+ * @param n number of wines
+ * 
+ * @return The maximum profit that can be earned by selling the wines.
+ */
 int wines_bottom_app(int prices[], int n)
 {
     vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
